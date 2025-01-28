@@ -1,19 +1,37 @@
 #Importar libreries
-import ttkbootstrap as bs
+import ttkbootstrap as bootstrap
 
 import tkinter as tk
 from tkinter import ttk
 
 #Crear finestra
+class App(tk.Frame):
+    def __init__(self, w):
+        super().__init__(w)
+        self.__master = w
+        self.__create_elements()
+
+
 w = tk.Tk()
 w.title("CalcLife")
-w.geometry("400x800+600+0")
+w.geometry("400x820+600+0")
 
 #FUNCIONS
 def calcular():
-    
-    pass
+    total = ent_total.get()
+    salari = ent_salario.get()
 
+    lbl_total_casa_res.config(text=str((int(total)*0.4)))
+    lbl_total_ahorro_res.config(text=str(int(total)*0.1))
+    lbl_total_coche_res.config(text=str(int(total)*0.1))
+    lbl_total_caprichos_res.config(text=str(int(total)*0.1))
+    lbl_total_life_res.config(text=str(int(total)*0.3))
+    
+    lbl_ingresos_casa_res.config(text=str(int(salari)*0.4))
+    lbl_ingresos_ahorro_res.config(text=str(int(salari)*0.1))
+    lbl_ingresos_coche_res.config(text=str(int(salari)*0.1))
+    lbl_ingresos_caprichos_res.config(text=str(int(salari)*0.1))
+    lbl_ingresos_life_res.config(text=str(int(salari)*0.3))
 
 #INPUT DE DINERS TOTALS I SALARI
 lbl_title = ttk.Label(w, text="INTRODUCE LOS DATOS:", font=("Arial", 20))
