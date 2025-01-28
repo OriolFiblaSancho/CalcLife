@@ -1,7 +1,7 @@
 #Importar libreries
 import ttkbootstrap as bootstrap
 import tkinter as tk
-from tkinter import ttk
+from tkinter import ttk, messagebox
 
 #Crear finestra
 #sex
@@ -122,22 +122,47 @@ class App(tk.Frame):
     #########
     def calcular(self):
         try:
-            total = float(self.ent_total.get())
-            salari = float(self.ent_salario.get())
-        except ValueError:
+            total = self.ent_total.get()
+            salario = self.ent_salario.get()
+
+            total = float(total) if total else None
+            salario = float(salario) if salario else None
+
+            if total is None and salario is None:
+                raise ValueError("Has de plenar al menys un camp")
+            
+        except ValueError as e:
+            messagebox.showerror("Error", f"Aquesta entrada no és vàlida: {e}")
             return
+        
+        # Si total no es None (hi ha data al input) actualitzem els labels
+        if total is not None:
+            self.lbl_total_casa_res.config(text=f"{total * 0.4:.2f}")
+            self.lbl_total_ahorro_res.config(text=f"{total * 0.1:.2f}")
+            self.lbl_total_coche_res.config(text=f"{total * 0.1:.2f}")
+            self.lbl_total_caprichos_res.config(text=f"{total * 0.1:.2f}")
+            self.lbl_total_life_res.config(text=f"{total * 0.3:.2f}")
+         # Del contrari, posem tots els labels a 0 ja que no hi han dades i així evitem errors
+        else:
+            self.lbl_total_casa_res.config(text="0")
+            self.lbl_total_ahorro_res.config(text="0")
+            self.lbl_total_coche_res.config(text="0")
+            self.lbl_total_caprichos_res.config(text="0")
+            self.lbl_total_life_res.config(text="0")
 
-        self.lbl_total_casa_res.config(text=f"{total * 0.4:.2f}")
-        self.lbl_total_ahorro_res.config(text=f"{total * 0.1:.2f}")
-        self.lbl_total_coche_res.config(text=f"{total * 0.1:.2f}")
-        self.lbl_total_caprichos_res.config(text=f"{total * 0.1:.2f}")
-        self.lbl_total_life_res.config(text=f"{total * 0.3:.2f}")
-
-        self.lbl_ingresos_casa_res.config(text=f"{salari * 0.4:.2f}")
-        self.lbl_ingresos_ahorro_res.config(text=f"{salari * 0.1:.2f}")
-        self.lbl_ingresos_coche_res.config(text=f"{salari * 0.1:.2f}")
-        self.lbl_ingresos_caprichos_res.config(text=f"{salari * 0.1:.2f}")
-        self.lbl_ingresos_life_res.config(text=f"{salari * 0.3:.2f}")
+        # Seguimn el mateix procediment condicional que a dalt
+        if salario is not None:
+            self.lbl_ingresos_casa_res.config(text=f"{salario * 0.4:.2f}")
+            self.lbl_ingresos_ahorro_res.config(text=f"{salario * 0.1:.2f}")
+            self.lbl_ingresos_coche_res.config(text=f"{salario * 0.1:.2f}")
+            self.lbl_ingresos_caprichos_res.config(text=f"{salario * 0.1:.2f}")
+            self.lbl_ingresos_life_res.config(text=f"{salario * 0.3:.2f}")
+        else:
+            self.lbl_ingresos_casa_res.config(text="0")
+            self.lbl_ingresos_ahorro_res.config(text="0")
+            self.lbl_ingresos_coche_res.config(text="0")
+            self.lbl_ingresos_caprichos_res.config(text="0")
+            self.lbl_ingresos_life_res.config(text="0")
 
 
 
