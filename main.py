@@ -16,9 +16,6 @@ class App(tk.Frame):
     # CREATION OF WIDGETS
     ####################
     def __create_elements(self):
-        self.btn_changeTheme = ttk.Button(self, text="Dark/Light", style="superman.TButton", command=self.toggle_theme)
-        self.btn_changeTheme.grid(row=0, column=2, padx=10, pady=10)
-
         # TITUL PRINCIPAL
         self.lbl_mainTitle = ttk.Label(self, text="CalcLIFE", font=("Arial", 30, "bold"), padding=10)
         self.lbl_mainTitle.grid(row=0, column=0, columnspan=2)
