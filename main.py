@@ -16,6 +16,9 @@ class App(tk.Frame):
     # CREATION OF WIDGETS
     ####################
     def __create_elements(self):
+        self.btn_changeTheme = ttk.Button(self, text="Dark/Light", style="superman.TButton", command=self.toggle_theme)
+        self.btn_changeTheme.grid(row=0, column=2, padx=10, pady=10)
+
         # TITUL PRINCIPAL
         self.lbl_mainTitle = ttk.Label(self, text="CalcLIFE", font=("Arial", 30, "bold"), padding=10)
         self.lbl_mainTitle.grid(row=0, column=0, columnspan=2)
@@ -37,7 +40,7 @@ class App(tk.Frame):
         self.frm_input.grid(row=1, column=0, columnspan=2, pady=10) # FEM UN PACK DE LA SECCIÓ AMB MÈTODE GRID
 
         # BOTÓ CALCULAR
-        self.btt_calcular = ttk.Button(self, text="Calcular", command=self.calcular, width=20)
+        self.btt_calcular = ttk.Button(self, text="Calcular", command=self.calcular, width=20, style="superman.TButton")
         self.btt_calcular.grid(row=2, column=0, columnspan=2, pady=10)
 
         # OUTPUT FRAMES (ON ES MOSTRA LA SORTIDA DE DADES)
@@ -62,9 +65,14 @@ class App(tk.Frame):
         self.canvas_total = None
         self.canvas_salario = None
 
+    
+
     #########
     # FUNCIONS
     #########
+    def toggle_theme(self):
+        pass
+
     def calcular(self):
         try:
             total = self.ent_total.get()
@@ -129,11 +137,13 @@ class App(tk.Frame):
         if canvas:
             canvas.get_tk_widget().destroy()
 
-style = bootstrap.Style()
+
 
 w = tk.Tk()
 w.geometry("815x420")
 w.resizable(False, False)
+style = bootstrap.Style(theme="darkly")
+w = style.master
 app = App(w)
 app.pack(fill="both", expand=True)
 app.mainloop()
