@@ -5,7 +5,6 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import matplotlib.pyplot as plt
 
 # Crear finestra
-#sex
 class App(tk.Frame):
     def __init__(self, w):
         super().__init__(w)
@@ -18,8 +17,8 @@ class App(tk.Frame):
     ####################
     def __create_elements(self):
         # TITUL PRINCIPAL
-        self.lbl_mainTitle = ttk.Label(self, text="CalcLIFE", font=("Arial", 30, "bold"), padding=20)
-        self.lbl_mainTitle.grid(row=0, column=0, columnspan=2, pady=20)
+        self.lbl_mainTitle = ttk.Label(self, text="CalcLIFE", font=("Arial", 30, "bold"), padding=10)
+        self.lbl_mainTitle.grid(row=0, column=0, columnspan=2)
 
         # INPUT FRAMES START
         self.frm_input = ttk.Frame(self)
@@ -130,9 +129,11 @@ class App(tk.Frame):
         if canvas:
             canvas.get_tk_widget().destroy()
 
+style = bootstrap.Style()
 
 w = tk.Tk()
-w.geometry("815x700")
+w.geometry("815x420")
+w.resizable(False, False)
 app = App(w)
 app.pack(fill="both", expand=True)
 app.mainloop()
